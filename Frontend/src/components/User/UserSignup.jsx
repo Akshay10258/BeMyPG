@@ -81,7 +81,6 @@ function Signup() {
             const result = await fetch('https://be-my-pg-77p3.vercel.app/api/user/', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                mode: 'no-cors',
                 body: JSON.stringify(data),
                 credentials:"include"
             });
