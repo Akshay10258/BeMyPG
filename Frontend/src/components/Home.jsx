@@ -9,7 +9,7 @@ const HomePage = () => {
     return (
         <div className="flex h-screen">
         <div className="w-1/2 bg-black flex flex-col justify-center items-center p-8">
-            <h1 className="p-3 text-6xl font-bold mb-4 gradient-text-animation">BeMyPG</h1>
+            {/* <h1 className="p-3 text-6xl font-bold mb-4 gradient-text-animation">BeMyPG</h1> */}
 
             {/* <p className="text-white mb-6"> Who are you?</p> */}
 
