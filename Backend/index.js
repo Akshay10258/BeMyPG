@@ -47,7 +47,7 @@ app.use(cookieParser());
 
 // Enable CORS for your frontend domain (e.g., http://localhost:5173)
 app.use(cors({
-  origin: 'http://localhost:5173', // Frontend URL
+  origin: 'https://be-my-pg.vercel.app/', // Frontend URL
   credentials: true, // Allow cookies to be sent and received
 }));
 
