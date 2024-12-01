@@ -7,11 +7,17 @@ const path = require('path');
 const { connectomongodb}=require("./connect")
 const app = express()
 
+app.use((req, res, next) => {
+  console.log('Incoming request from:', req.headers.origin);
+  next();
+});
+
 app.use(cors({
-  origin: ["https://be-my-pg.vercel.app"], // Replace with your frontend URL
-  methods: ["POST", "GET", "PUT", "DELETE"],
-  credentials: true, // Allow cookies
+  origin: ['https://be-my-pg.vercel.app', 'https://be-my-pg-77p3.vercel.app'], // Add all your allowed domains
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  credentials: true,
 }));
+
 
 
 const port = 3000
