@@ -10,7 +10,7 @@ const CitySelection = () => {
         // Fetch cities from the backend
         const fetchCities = async () => {
             try {
-                const response = await fetch('http://localhost:3000/UserFindPgByCity/', {
+                const response = await fetch('https://be-my-pg-77p3.vercel.app/UserFindPgByCity/', {
                     method: "GET",
                     headers: { "Content-Type": "application/json" },
                     // body: JSON.stringify({city}),
@@ -39,7 +39,7 @@ const CitySelection = () => {
     const onCitySelect=async(city) => {
         console.log(city)
 
-        const result = await fetch('http://localhost:3000/GetPgByCity', {
+        const result = await fetch('https://be-my-pg-77p3.vercel.app/GetPgByCity', {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({city}),

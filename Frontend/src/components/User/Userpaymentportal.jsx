@@ -100,7 +100,7 @@ const PaymentPage = () => {
         // Fetch User profile and PG details from the backend
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:3000/UserProfile',{method: "GET",credentials:"include"}); // Adjust API endpoint as needed
+                const response = await fetch('https://be-my-pg-77p3.vercel.app/UserProfile',{method: "GET",credentials:"include"}); // Adjust API endpoint as needed
                 if (!response.ok) {
                     throw new Error('Failed to fetch data');
                 }
@@ -125,7 +125,7 @@ const PaymentPage = () => {
     const handleBookPg=async() => {
       console.log("Datatata",UserData)
 
-      const result = await fetch('http://localhost:3000/BookPg', {
+      const result = await fetch('https://be-my-pg-77p3.vercel.app//BookPg', {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({UserData}),

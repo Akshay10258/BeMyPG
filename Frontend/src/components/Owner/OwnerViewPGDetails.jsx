@@ -342,7 +342,7 @@ const OwnerPGDetails = () => {
     useEffect(() => {
         const fetchPGDetails = async () => {
             try {
-                const response = await fetch('http://localhost:3000/ViewPgDetails', {
+                const response = await fetch('https://be-my-pg-77p3.vercel.app/ViewPgDetails', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -355,7 +355,7 @@ const OwnerPGDetails = () => {
                 const data = await response.json();
                 setPgDetails(data);
 
-                const basePath = 'http://localhost:3000';
+                const basePath = 'https://be-my-pg-77p3.vercel.app';
                 if (data[0] && data[0].Rooms) {
                     const images = {
                         single: basePath + data[0].Rooms[0]?.Images || '',

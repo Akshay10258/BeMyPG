@@ -9,7 +9,7 @@ const ScheduledVisits = () => {
     useEffect(() => {
         const fetchPGDetails = async () => {
             try {
-                const response = await fetch('http://localhost:3000/ViewPgDetails', {
+                const response = await fetch('https://be-my-pg-77p3.vercel.app/ViewPgDetails', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

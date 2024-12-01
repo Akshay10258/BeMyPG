@@ -78,7 +78,7 @@ function Signup() {
 
     const onSubmit = async (data) => {
         try {
-            const result = await fetch('http://localhost:3000/owner/', {
+            const result = await fetch('https://be-my-pg-77p3.vercel.app/owner/', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data)

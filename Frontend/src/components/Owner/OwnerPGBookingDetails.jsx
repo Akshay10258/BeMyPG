@@ -369,7 +369,7 @@ const PgBookings = () => {
     useEffect(() => {
         const fetchPGDetails = async () => {
             try {
-                const response = await fetch('http://localhost:3000/ViewPgDetails', {
+                const response = await fetch('https://be-my-pg-77p3.vercel.app/ViewPgDetails', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -394,7 +394,7 @@ const PgBookings = () => {
     // Handle booking status update
     const updateBookingStatus = async (pgId, bookingId, newStatus, roomType) => {
         try {
-            const response = await fetch('http://localhost:3000/updateBookingStatus', {
+            const response = await fetch('https://be-my-pg-77p3.vercel.app/updateBookingStatus', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

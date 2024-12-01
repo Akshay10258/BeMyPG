@@ -186,7 +186,7 @@ const BookingForm = ({ onBookingSuccess }) => {
         // Fetch User profile and PG details from the backend
         const fetchData = async () => {
             try {
-                const response = await fetch("http://localhost:3000/UserProfile", {
+                const response = await fetch("https://be-my-pg-77p3.vercel.app/UserProfile", {
                     method: "GET",
                     credentials: "include",
                 });
@@ -228,7 +228,7 @@ const BookingForm = ({ onBookingSuccess }) => {
                 bookingDate: new Date(formData.bookingDate), // Ensure the date is in Date format
             };
 
-            const response = await fetch("http://localhost:3000/BookPg", {
+            const response = await fetch("https://be-my-pg-77p3.vercel.app/BookPg", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

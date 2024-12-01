@@ -33,7 +33,7 @@ const PgReview = () => {
             feedback: review,  // String value for the review text
         };
         // console.log("data",data);
-        const result =  await fetch('http://localhost:3000/rating/',{method: "POST",headers:{"Content-Type":"application/json",} ,credentials:"include",body: JSON.stringify(reviewData)})
+        const result =  await fetch('https://be-my-pg-77p3.vercel.app/rating/',{method: "POST",headers:{"Content-Type":"application/json",} ,credentials:"include",body: JSON.stringify(reviewData)})
         const res= await result.text(); 
         console.log("res",res);
     // Log the review object (You can replace this with an API call to send data to the backend)
