@@ -49,10 +49,11 @@ app.get("/",(req,res)=>{
 })
 
 app.use(cors({
-  origin:["https://be-my-pg.vercel.app"], // Frontend URL
-  methods:["POST","GET"],
-  credentials: true, // Allow cookies to be sent and received
+  origin: ["https://be-my-pg.vercel.app"], // Replace with your frontend URL
+  methods: ["POST", "GET", "PUT", "DELETE"],
+  credentials: true, // Allow cookies
 }));
+
 
 
 // Midllewares or routes 
@@ -72,11 +73,12 @@ app.use("/rating",restrictToLoggedinPgUserOnly,rating);
 app.use("/ScheduleVisit",restrictToLoggedinPgUserOnly,ScheduleVisit);
 
 app.use("/",staticRoute);
-app.use("/owner",pgowner);      // means if url with /owner then call this
-app.use("/user",pguser);
+app.use("/api/owner",pgowner);      // means if url with /owner then call this
+app.use("/api/user",pguser);
 // MongoDB connection : BeMyPg (Name of the database)
 // mongoose.connect("mongodb://localhost:27017/BeMyPg")
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
+
