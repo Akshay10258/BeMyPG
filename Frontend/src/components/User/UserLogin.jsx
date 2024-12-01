@@ -12,6 +12,7 @@ function Login() {
             const result = await fetch('https://be-my-pg-77p3.vercel.app/api/user/login/', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
+                mode: 'no-cors',
                 body: JSON.stringify(data),
                 credentials:"include",
             });
