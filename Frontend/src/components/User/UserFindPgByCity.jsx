@@ -55,7 +55,7 @@ const CitySelection = () => {
     }
     
     return (
-        <div className="container  mx-auto p-6 bg-gradient-to-l from-black to-cyan-700  w-full h-full min-h-screen">
+        <div className="container  mx-auto p-6 bg-gradient-to-l from-black to-cyan-700  min-w-[100vw] h-full min-h-screen">
             <h1 className="text-2xl font-bold text-white mb-4 text-center">Select a City to Find PGs</h1>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {cities.map((city, index) => (

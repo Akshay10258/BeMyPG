@@ -1,42 +1,3 @@
-// // src/pages/OwnerHomePage.jsx
-// import React from 'react';
-// import { useNavigate } from 'react-router-dom';
-
-// const OwnerHomePage = () => {
-//     const navigate = useNavigate();
-
-//     return (
-//         <div className="flex items-center justify-center h-screen bg-gray-100">
-//         <div className="text-center p-8 bg-white shadow-lg rounded-lg">
-//             <h1 className="text-3xl font-bold mb-6 text-gray-800">Owner Dashboard</h1>
-//             <p className="text-lg mb-8 text-gray-600">Manage your PG listings and rooms.</p>
-//             <div className="space-y-4">
-//             <button
-//                 className="w-full px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
-//                 onClick={() => navigate('/AddNewPgOwner')}
-//             >
-//                 Add Your PG
-//             </button>
-//             <button
-//                 className="w-full px-6 py-2 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400"
-//                 onClick={() => navigate('/AddRoomOwner')}
-//             >
-//                 Add/Update Room
-//             </button>
-//             <button
-//                 className="w-full px-6 py-2 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400"
-//                 onClick={() => navigate('/Owner/ViewPgDetails')}
-//             >
-//                 View PG Details 
-//             </button>
-//             </div>
-//         </div>
-//         </div>
-//     );
-// };
-
-// export default OwnerHomePage;
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import pgimage from '../../assets/images/WhatsApp2.jpeg';
@@ -45,62 +6,113 @@ const OwnerHomePage = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="flex h-screen bg-white">
-        <div className="w-1/3 flex items-center justify-center h-screen bg-gradient-to-r from-black  to-gray-500 " >        
-            <div className="text-center p-8 bg-gradient-to-r from-black  to-gray-500 shadow-lg rounded-lg">
-            <h1 className="text-3xl font-bold mb-6 text-white">Owner Dashboard</h1>
-            <p className="text-lg mb-8 text-white">Manage your PG listings and rooms.</p>
-            <div className="space-y-4">
-            <button
-                className="w-full px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                onClick={() => navigate('/AddNewPgOwner')}
-            >
-                Add Your PG
-            </button>
-            <button
-                className="w-full px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-green-400"
-                onClick={() => navigate('/AddRoomOwner')}
-            >
-                Add/Update Room
-            </button>
-            <button
-                className="w-full px-6 py-2 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400"
-                onClick={() => navigate('/Owner/ViewPgDetails')}
-            >
-                View PG Details 
-            </button>
-            <button
-                className="w-full px-6 py-2 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400"
-                onClick={() => navigate('/OwnerProfile')}
-            >
-                View My Profile 
-            </button>
-            <button
-                className="w-full px-6 py-2 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400"
-                onClick={() => navigate('/ScheduledVisits')}
-            >
-                View Scheduled Visits
-            </button>
-            <button
-                className="w-full px-6 py-2 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400"
-                onClick={() => navigate('/OwnerPGBookingDetails')}
-            >
-                View Customer Bookings
-            </button>
-            </div>
-        </div>
-        </div>
+        <div className="min-h-screen bg-black text-white">
+            {/* Navbar */}
+            <nav className="bg-gradient-to-r from-blue-900 via-black to-blue-900 py-6 shadow-lg">
+                <div className="container mx-auto flex items-center justify-between px-6">
+                    <h1
+                        className="p-2 gradient-text-animation2 text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-700 cursor-pointer"
+                        onClick={() => navigate('/')}
+                    >
+                        BeMyPG
+                    </h1>
+                    <div className="space-x-6 text-lg">
+                        <button className="hover:text-blue-400 transition duration-300" onClick={() => navigate('/')}>Home</button>
+                        <button className="hover:text-blue-400 transition duration-300" onClick={() => navigate('/OwnerProfile')}>My Profile</button>
+                        <button className="hover:text-blue-400 transition duration-300" onClick={() => navigate('/OwnerPGBookingDetails')}>My Bookings</button>
+                    </div>
+                </div>
+            </nav>
 
+            {/* Hero Section */}
+            <header className="relative h-[30rem]">
+                <img
+                    src={pgimage}
+                    alt="Abstract PG"
+                    className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center">
+                    <h2 className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-700">
+                        Welcome to the Owner Dashboard
+                    </h2>
+                    <p className="text-xl text-gray-300">Manage your PG listings and customer interactions seamlessly.</p>
+                </div>
+            </header>
 
+            {/* Dashboard Buttons */}
+            <main className="container mx-auto py-12 px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                {/* Add Your PG Button */}
+                <div
+                    className="p-6 bg-gradient-to-b from-gray-900 to-blue-800 rounded-lg shadow-lg hover:scale-105 transition-transform cursor-pointer"
+                    onClick={() => navigate('/AddNewPgOwner')}
+                >
+                    <h3 className="text-2xl font-bold mb-4 text-center text-blue-400">Add Your PG</h3>
+                    <p className="text-center text-gray-300">
+                        Start listing your PG and manage its details effortlessly.
+                    </p>
+                </div>
 
-        <div className="w-2/3">
-        <img 
-            src={pgimage}
-            alt="abstract pic of pg" 
-            className="w-full h-full object-fill" 
-            />
+                {/* Add/Update Room Button */}
+                <div
+                    className="p-6 bg-gradient-to-b from-gray-900 to-blue-800 rounded-lg shadow-lg hover:scale-105 transition-transform cursor-pointer"
+                    onClick={() => navigate('/AddRoomOwner')}
+                >
+                    <h3 className="text-2xl font-bold mb-4 text-center text-blue-400">Add/Update Room</h3>
+                    <p className="text-center text-gray-300">
+                        Update room availability and pricing details.
+                    </p>
+                </div>
+
+                {/* View PG Details Button */}
+                <div
+                    className="p-6 bg-gradient-to-b from-gray-900 to-blue-800 rounded-lg shadow-lg hover:scale-105 transition-transform cursor-pointer"
+                    onClick={() => navigate('/Owner/ViewPgDetails')}
+                >
+                    <h3 className="text-2xl font-bold mb-4 text-center text-blue-400">View PG Details</h3>
+                    <p className="text-center text-gray-300">
+                        Review and manage all your listed PGs.
+                    </p>
+                </div>
+
+                {/* View My Profile Button */}
+                <div
+                    className="p-6 bg-gradient-to-b from-gray-900 to-blue-800 rounded-lg shadow-lg hover:scale-105 transition-transform cursor-pointer"
+                    onClick={() => navigate('/OwnerProfile')}
+                >
+                    <h3 className="text-2xl font-bold mb-4 text-center text-blue-400">View My Profile</h3>
+                    <p className="text-center text-gray-300">
+                        Manage your personal details and preferences.
+                    </p>
+                </div>
+
+                {/* Scheduled Visits Button */}
+                <div
+                    className="p-6 bg-gradient-to-b from-gray-900 to-blue-800 rounded-lg shadow-lg hover:scale-105 transition-transform cursor-pointer"
+                    onClick={() => navigate('/ScheduledVisits')}
+                >
+                    <h3 className="text-2xl font-bold mb-4 text-center text-blue-400">View Scheduled Visits</h3>
+                    <p className="text-center text-gray-300">
+                        Track all scheduled customer visits.
+                    </p>
+                </div>
+
+                {/* View Customer Bookings Button */}
+                <div
+                    className="p-6 bg-gradient-to-b from-gray-900 to-blue-800 rounded-lg shadow-lg hover:scale-105 transition-transform cursor-pointer"
+                    onClick={() => navigate('/OwnerPGBookingDetails')}
+                >
+                    <h3 className="text-2xl font-bold mb-4 text-center text-blue-400">View Customer Bookings</h3>
+                    <p className="text-center text-gray-300">
+                        Access and manage all customer bookings.
+                    </p>
+                </div>
+            </main>
+
+            {/* Footer */}
+            <footer className="bg-gradient-to-t from-gray-900 to-black py-6 text-center text-gray-500">
+                <p>© 2024 BeMyPG. All Rights Reserved.</p>
+            </footer>
         </div>
-    </div>
     );
 };
 

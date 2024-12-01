@@ -12,7 +12,7 @@ const {restrictToLoggedinUserOnly}=require("./middlewares/auth");
 const {restrictToLoggedinPgUserOnly}=require("./middlewares/auth2");
 
 
-connectomongodb("mongodb://localhost:27017/BeMyPg")
+connectomongodb("mongodb+srv://dbBeMyPGAkshay:akshay1234@cluster0.mjpm5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 .then(()=>console.log("Mongodbconnected"));
 
 
