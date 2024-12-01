@@ -28,7 +28,10 @@ const {restrictToLoggedinPgUserOnly}=require("./middlewares/auth2");
 
 connectomongodb("mongodb+srv://dbBeMyPGAkshay:akshay1234@cluster0.mjpm5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
   .then(() => console.log("Mongodb connected"))
-  .catch(err => console.error("MongoDB connection failed: ", err));
+  .catch(err => {
+    console.error("MongoDB connection failed: ", err);
+    process.exit(1); // Exit the process if DB connection fails
+  });
 
 
 
@@ -89,6 +92,10 @@ app.use("/api/owner",pgowner);      // means if url with /owner then call this
 app.use("/api/user/",pguser);
 // MongoDB connection : BeMyPg (Name of the database)
 // mongoose.connect("mongodb://localhost:27017/BeMyPg")
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: 'Internal Server Error adeed', details: err.message });
+});
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
