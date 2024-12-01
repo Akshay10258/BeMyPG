@@ -12,10 +12,13 @@ app.use((req, res, next) => {
   next();
 });
 
+// In index.js, update your CORS configuration
 app.use(cors({
-  origin: ['https://be-my-pg.vercel.app', 'https://be-my-pg-77p3.vercel.app'], // Add all your allowed domains
+  origin: ['https://be-my-pg.vercel.app', 'https://be-my-pg-77p3.vercel.app'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization', 'Cookie'],
+  exposedHeaders: ['set-cookie']
 }));
 
 
