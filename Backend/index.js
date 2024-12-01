@@ -20,7 +20,9 @@ const {restrictToLoggedinPgUserOnly}=require("./middlewares/auth2");
 
 
 connectomongodb("mongodb+srv://dbBeMyPGAkshay:akshay1234@cluster0.mjpm5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
-.then(()=>console.log("Mongodbconnected"));
+  .then(() => console.log("Mongodb connected"))
+  .catch(err => console.error("MongoDB connection failed: ", err));
+
 
 
 // importing the routes : 
