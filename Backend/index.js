@@ -6,6 +6,13 @@ const path = require('path');
 
 const { connectomongodb}=require("./connect")
 const app = express()
+
+app.use(cors({
+  origin: ["https://be-my-pg.vercel.app"], // Replace with your frontend URL
+  methods: ["POST", "GET", "PUT", "DELETE"],
+  credentials: true, // Allow cookies
+}));
+
 const port = 3000
 const cookieParser=require("cookie-parser");
 const {restrictToLoggedinUserOnly}=require("./middlewares/auth");
@@ -48,11 +55,7 @@ app.get("/",(req,res)=>{
   res.json("Hello");
 })
 
-app.use(cors({
-  origin: ["https://be-my-pg.vercel.app"], // Replace with your frontend URL
-  methods: ["POST", "GET", "PUT", "DELETE"],
-  credentials: true, // Allow cookies
-}));
+
 
 
 
