@@ -8,7 +8,7 @@ async function signup(req,res) {
         email,
         password,
     });
-    return res.json({ success: true, redirect: "http://localhost:5173/OwnerLogin" });
+    return res.json({ success: true, redirect: "https://be-my-pg.vercel.app/OwnerLogin" });
 }
 
 // async function login(req,res) {
@@ -46,7 +46,7 @@ async function login(req, res) {
     res.cookie("uid",token);
    //res.cookie('uid',sessionid);
     // Instead of redirecting, send a JSON response indicating success
-    return res.json({ success: true, redirect: "http://localhost:5173/OwnerHome" });
+    return res.json({ success: true, redirect: "https://be-my-pg.vercel.app/OwnerHome" });
 }
 
 

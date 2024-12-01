@@ -29,7 +29,7 @@ const updateBookingStatus = async(req,res) => {
         booking.bookingStatus = newStatus; // Update status
         await pg.save();
 
-        return res.json({ success: true, redirect: "http://localhost:5173/OwnerHome" });
+        return res.json({ success: true, redirect: "https://be-my-pg.vercel.app/OwnerHome" });
     } catch (error) {
         console.error('Error updating booking status:', error);
         res.status(500).json({ message: 'Internal server error' });

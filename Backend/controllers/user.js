@@ -9,7 +9,7 @@ async function signup(req,res) {
         email,
         password,
     });
-    return res.json({ success: true, redirect: "http://localhost:5173/UserLogin" });
+    return res.json({ success: true, redirect: "https://be-my-pg.vercel.app/UserLogin" });
 }
 
 
@@ -39,7 +39,7 @@ async function login(req, res) {
     res.cookie("uid",token);
    //res.cookie('uid',sessionid);
     // Instead of redirecting, send a JSON response indicating success
-    return res.json({ success: true, redirect: "http://localhost:5173/UserHome" });
+    return res.json({ success: true, redirect: "https://be-my-pg.vercel.app/UserHome" });
 }
 
 module.exports={
