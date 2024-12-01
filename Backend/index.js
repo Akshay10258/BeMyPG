@@ -44,10 +44,13 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(cookieParser());
 
 //const cors = require('cors');
-
+app.get("/",(req,res)=>{
+  res.json("Hello");
+})
 // Enable CORS for your frontend domain (e.g., http://localhost:5173)
 app.use(cors({
-  origin: 'https://be-my-pg.vercel.app/', // Frontend URL
+  origin:["https://be-my-pg.vercel.app"], // Frontend URL
+  methods:["POST","GET"],
   credentials: true, // Allow cookies to be sent and received
 }));
 
