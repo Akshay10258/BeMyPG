@@ -8,7 +8,7 @@ const { connectomongodb}=require("./connect")
 const app = express()
 
 app.use(cors({
-  origin: ["https://be-my-pg.vercel.app/"], // Replace with your frontend URL
+  origin: ["https://be-my-pg.vercel.app"], // Replace with your frontend URL
   methods: ["POST", "GET", "PUT", "DELETE"],
   credentials: true, // Allow cookies
 }));
