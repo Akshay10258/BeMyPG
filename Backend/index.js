@@ -12,7 +12,7 @@ app.use(cors({
   methods: ["POST", "GET", "PUT", "DELETE"],
   credentials: true, // Allow cookies
 }));
-
+app.options('*', cors());
 
 const port = 3000
 const cookieParser=require("cookie-parser");
