@@ -3,9 +3,15 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const path = require('path');
+const cookieParser=require("cookie-parser");
 
 const { connectomongodb } = require("./connect")
 const app = express()
+app.use(bodyParser.json())
+app.use(express.json());
+app.use(express.urlencoded({extended:false}));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use(cookieParser());
 
 app.use(cors({
   origin: ['https://be-my-pg.vercel.app', 'https://be-my-pg-77p3.vercel.app'], // Allowed origins
@@ -43,7 +49,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 const port = 3000
-const cookieParser=require("cookie-parser");
 const {restrictToLoggedinUserOnly}=require("./middlewares/auth");
 const {restrictToLoggedinPgUserOnly}=require("./middlewares/auth2");
 
@@ -76,11 +81,7 @@ const userScheduledVisits = require("./routes/userScheduledVisits.js");
 
 // Midleware for packages
 // app.use(cors())
-app.use(bodyParser.json())
-app.use(express.json());
-app.use(express.urlencoded({extended:false}));
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.use(cookieParser());
+
 
 //const cors = require('cors');
 app.get("/",(req,res)=>{
