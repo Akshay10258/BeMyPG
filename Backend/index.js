@@ -102,8 +102,8 @@ app.use("/rating",restrictToLoggedinPgUserOnly,rating);
 app.use("/ScheduleVisit",restrictToLoggedinPgUserOnly,ScheduleVisit);
 
 app.use("/",staticRoute);
-app.use("/api/owner",pgowner);      // means if url with /owner then call this
-app.use("/api/user",pguser);
+app.use("/owner",pgowner);      // means if url with /owner then call this
+app.use("/user",pguser);
 // MongoDB connection : BeMyPg (Name of the database)
 // mongoose.connect("mongodb://localhost:27017/BeMyPg")
 app.use((err, req, res, next) => {
