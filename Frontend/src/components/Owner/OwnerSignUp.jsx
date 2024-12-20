@@ -78,7 +78,7 @@ function Signup() {
 
     const onSubmit = async (data) => {
         try {
-            const result = await fetch('https://be-my-pg-77p3.vercel.app/api/owner/', {
+            const result = await fetch('https://be-my-pg-77p3.vercel.app/api/owner', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data)
@@ -126,7 +126,6 @@ function Signup() {
                         />
                         {errors.password && <p className="text-red-500 text-sm">Password is required</p>}
                     </div>
-                  
                     <button type="submit" className="w-full px-4 py-2 font-medium text-white bg-cyan-500 rounded-full hover:bg-cyan-700" disabled={isSubmitting}>
                         {isSubmitting ? 'Submitting...' : 'Signup'}
                     </button>
