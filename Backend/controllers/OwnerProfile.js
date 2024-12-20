@@ -27,7 +27,7 @@ const OwnerProfile = async (req, res) => {
                 Gender:pg.Gender,
             })),
         };
-
+        console.log("proffff",profile);
         res.json(profile);
     } catch (error) {
         console.error('Error fetching owner profile:', error);
