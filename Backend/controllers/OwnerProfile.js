@@ -12,7 +12,7 @@ const OwnerProfile = async (req, res) => {
         if (!owner) {
             return res.status(404).send("Owner not found");
         }
-
+        console.log("ghfhgf",owner);
         const profile = {
             owner: {
                 email: owner.email,
