@@ -1,28 +1,20 @@
 const {getuser}=require("../service/auth");
 
-async function restrictToLoggedinUserOnly(req, res, next) {
-    try {
-        const userUid = req.cookies?.uid;
+async function restrictToLoggedinUserOnly(req,res,next){
+    const userUid=req.cookies?.uid; // ? if u get error as properties of undefined pointing on req.cookie.....
+    if(!userUid)
+        return res.json({ success: true });
+    console.log("ididid",userUid);
+    const user=getuser(userUid);
 
-        if (!userUid) {
-            return res.status(401).json({ success: false, message: "User not logged in" });
-        }
+    if(!user) 
+        return res.json({ success: true});
+    req.user=user;
+    console.log(req.user._id);
+    console.log("got the id ")
+    next();
 
-        const user = getuser(userUid);
-
-        if (!user) {
-            return res.status(401).json({ success: false, message: "Invalid user" });
-        }
-
-        req.user = user;
-        console.log("User authenticated:", req.user._id);
-        next();
-    } catch (error) {
-        console.error("Error in authentication middleware:", error);
-        res.status(500).json({ success: false, message: "Server error during authentication" });
-    }
 }
-
 
 module.exports={
     restrictToLoggedinUserOnly,
