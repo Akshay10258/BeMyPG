@@ -4,15 +4,10 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const path = require('path');
 
-const { connectomongodb}=require("./connect")
+const { connectomongodb } = require("./connect")
 const app = express()
 
-app.use((req, res, next) => {
-  console.log('Incoming request from:', req.headers.origin);
-  next();
-});
-
-// In index.js, update your CORS configuration
+// Move CORS configuration before any middleware or logging
 app.use(cors({
   origin: ['https://be-my-pg.vercel.app', 'https://be-my-pg-77p3.vercel.app'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
@@ -21,6 +16,22 @@ app.use(cors({
   exposedHeaders: ['set-cookie']
 }));
 
+// Add explicit OPTIONS handling
+app.options('*', cors());
+
+// Add logging middleware after CORS
+app.use((req, res, next) => {
+  console.log('Incoming request from:', req.headers.origin);
+  // Also log CORS headers for debugging
+  res.on('finish', () => {
+    console.log('Response headers:', res.getHeaders());
+  });
+  next();
+});
+
+// Add body-parser configuration
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 
 const port = 3000
