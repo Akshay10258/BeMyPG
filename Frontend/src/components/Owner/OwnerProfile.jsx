@@ -37,7 +37,7 @@ const OwnerProfile = () => {
     if (error) return <div>Error: {error}</div>;
 
     return (
-        <div className="container mx-auto p-6  h-screen bg-no-repeat bg-cover" style={{ backgroundImage: 'url("https://st3.depositphotos.com/3336339/37106/i/450/depositphotos_371068526-stock-photo-dark-silver-cubes-abstract-metallic.jpg")' }}>
+        <div className="container mx-auto p-6  h-screen bg-no-repeat bg-cover min-w-[100vw] " style={{ backgroundImage: 'url("https://st3.depositphotos.com/3336339/37106/i/450/depositphotos_371068526-stock-photo-dark-silver-cubes-abstract-metallic.jpg")' }}>
             <h1 className="text-2xl font-bold text-white mb-4 text-center">Owner Profile</h1>
 
             {/* Owner Profile Section */}
@@ -46,7 +46,7 @@ const OwnerProfile = () => {
                     <div className=" shadow-md rounded-lg p-6 mb-6 bg-gradient-to-br from-black to-white">
                         <h2 className="text-xl font-semibold text-white mb-2">Owner Information</h2>
                         {/* <p className="text-white"><strong>Name:</strong> {ownerData.owner.name}</p> */}
-                        {/* <p className="text-white"><strong>Email:</strong> {ownerData.owner.email}</p> */}
+                        <p className="text-white"><strong>Email:</strong> {ownerData.owner.email}</p>
                         {/* <p className="text-white"><strong>Phone:</strong> {ownerData.owner.phone}</p> */}
                     </div>
 
@@ -62,7 +62,6 @@ const OwnerProfile = () => {
                                 <p className="text-white"><strong>Price Range:</strong> ₹{pg.PriceRange}</p>
                                 <p className="text-white"><strong>Food-Menu:</strong> {pg.Food}</p>
                                 <p className="text-white"><strong>PG for:</strong> {pg.Gender}</p>
-
                             </div>
                         ))}
                     </div>
