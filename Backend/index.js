@@ -47,8 +47,6 @@ connectomongodb("mongodb+srv://dbBeMyPGAkshay:akshay1234@cluster0.mjpm5.mongodb.
     process.exit(1); // Exit the process if DB connection fails
   });
 
-
-
 // importing the routes : 
 const rating=require("./routes/Ratings");
 const AddNewPgRoute = require("./routes/AddPGdetails");
@@ -80,10 +78,6 @@ app.use(cookieParser());
 app.get("/",(req,res)=>{
   res.json("Hello");
 })
-
-
-
-
 
 // Midllewares or routes 
 app.use("/AddNewPgOwner",restrictToLoggedinUserOnly,AddNewPgRoute)     // for filling the details

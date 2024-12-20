@@ -1,44 +1,29 @@
 const {getuser}=require("../service/auth");
 
-async function restrictToLoggedinUserOnly(req,res,next){
-    const userUid=req.cookies?.uid; // ? if u get error as properties of undefined pointing on req.cookie.....
-    if(!userUid)
-        return res.json({ success: true, redirect: "https://be-my-pg.vercel.app/OwnerLogin" });
-    
-    const user=getuser(userUid);
-  
+async function restrictToLoggedinUserOnly(req, res, next) {
+    try {
+        const userUid = req.cookies?.uid;
 
-    if(!user) 
-        return res.json({ success: true, redirect: "https://be-my-pg.vercel.app/OwnerLogin" });
-    req.user=user;
-    console.log(req.user._id);
-    console.log("got the id ")
-    next();
+        if (!userUid) {
+            return res.status(401).json({ success: false, message: "User not logged in" });
+        }
 
+        const user = getuser(userUid);
+
+        if (!user) {
+            return res.status(401).json({ success: false, message: "Invalid user" });
+        }
+
+        req.user = user;
+        console.log("User authenticated:", req.user._id);
+        next();
+    } catch (error) {
+        console.error("Error in authentication middleware:", error);
+        res.status(500).json({ success: false, message: "Server error during authentication" });
+    }
 }
-
-
-
-// async function restrictToLoggedinPgUserOnly(req,res,next){
-//     const userUid=req.cookies?.uuid; // ? if u get error as properties of undefined pointing on req.cookie.....
-//     if(!userUid)
-//         return res.json({ success: true, redirect: "http://localhost:5173/UserLogin" });
-//     console.log("restrict",userUid);
-//     const user=getuser(userUid);
-  
-
-//     if(!user) 
-//         return res.json({ success: true, redirect: "http://localhost:5173/UserLogin" });
-//     req.user=user;
-//     console.log(req.user._id);
-//     console.log("got the id ")
-//     next();
-
-// }
-
 
 
 module.exports={
     restrictToLoggedinUserOnly,
-    // restrictToLoggedinPgUserOnly,
 }
