@@ -4,7 +4,7 @@ const ownerModel = require("../models/pgowner");
 const OwnerProfile = async (req, res) => {
     try {
         const ownerId = req.user._id;
-
+        console.log("nshsgf",ownerId);
         // Find the owner and PG details
         const owner = await ownerModel.findById(ownerId);
         const pgDetails = await pgModel.find({ createdBy: ownerId });
