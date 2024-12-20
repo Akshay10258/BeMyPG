@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const path = require('path');
 const cookieParser=require("cookie-parser");
+const { GridFSBucket } = require('mongodb');
 
 const { connectomongodb } = require("./connect")
 const app = express()
@@ -112,6 +113,16 @@ app.use("/user",pguser);
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ error: 'Internal Server Error adeed', details: err.message });
+});
+
+// After all your other route handlers
+app.get("/uploads/:filename", (req, res) => {
+  const bucket = new GridFSBucket(conn.db, { bucketName: 'uploads' });
+  const fileStream = bucket.openDownloadStreamByName(req.params.filename);
+  
+  fileStream.pipe(res).on('error', (err) => {
+      res.status(500).send("Error retrieving file: " + err.message);
+  });
 });
 
 app.listen(port, () => {

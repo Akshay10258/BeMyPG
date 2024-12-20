@@ -196,23 +196,29 @@ const OwnerAddPG = () => {
         watch, 
         formState: { errors,isSubmitting } } = useForm();
 
-    const onSubmit = async (data) => {
-        console.log(data);
-
-        const formData = new FormData();
-        formData.append("occupancy", data.occupancy);
-        formData.append("Roomprice", data.Roomprice);
-        formData.append("VacantRooms", data.VacantRooms);
-
-        // Handle image files
-        for (let i = 0; i < data.images.length; i++) {
-            formData.append("images", data.images[i]);
-        }
-
-        const result =  await fetch('https://be-my-pg-77p3.vercel.app/AddNewRoom/',{method: "POST",body: formData,credentials:"include"}) //,headers:{"Content-Type":"application/json",} 
-        const res= await result.text(); 
-        console.log(res);
-    };
+        const onSubmit = async (data) => {
+            console.log(data);
+        
+            const formData = new FormData();
+            formData.append("occupancy", data.occupancy);
+            formData.append("Roomprice", data.Roomprice);
+            formData.append("VacantRooms", data.VacantRooms);
+        
+            // Handle image files
+            for (let i = 0; i < data.images.length; i++) {
+                formData.append("images", data.images[i]);
+            }
+        
+            const result = await fetch('https://be-my-pg-77p3.vercel.app/AddNewRoom/', {
+                method: "POST",
+                body: formData,
+                credentials: "include"
+            });
+        
+            const res = await result.text();
+            console.log(res);
+        };
+        
     
     return (
         <div className="flex justify-center items-center min-h-screen bg-repeat" style={{ backgroundImage: 'url("https://st3.depositphotos.com/3336339/37106/i/450/depositphotos_371068526-stock-photo-dark-silver-cubes-abstract-metallic.jpg")' }}>"
