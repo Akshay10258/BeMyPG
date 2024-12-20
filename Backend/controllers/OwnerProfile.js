@@ -3,7 +3,6 @@ const ownerModel = require("../models/pgowner");
 
 const OwnerProfile = async (req, res) => {
     try {
-     
         const ownerId = req.user._id;
 
         // Find the owner and PG details
@@ -14,7 +13,6 @@ const OwnerProfile = async (req, res) => {
             return res.status(404).send("Owner not found");
         }
 
-       
         const profile = {
             owner: {
                 email: owner.email,
