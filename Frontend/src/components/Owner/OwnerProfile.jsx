@@ -14,7 +14,7 @@ const OwnerProfile = () => {
                     throw new Error('Failed to fetch data');
                 }
                 const data = await response.json();
-                console.log(data);
+                console.log("got ddatatatatat",data);
                 setOwnerData(data);
                 setLoading(false);
             } catch (err) {
@@ -39,7 +39,7 @@ const OwnerProfile = () => {
                     <div className=" shadow-md rounded-lg p-6 mb-6 bg-gradient-to-br from-black to-white">
                         <h2 className="text-xl font-semibold text-white mb-2">Owner Information</h2>
                         {/* <p className="text-white"><strong>Name:</strong> {ownerData.owner.name}</p> */}
-                        <p className="text-white"><strong>Email:</strong> {ownerData.owner.email}</p>
+                        {/* <p className="text-white"><strong>Email:</strong> {ownerData.owner.email}</p> */}
                         {/* <p className="text-white"><strong>Phone:</strong> {ownerData.owner.phone}</p> */}
                     </div>
 
