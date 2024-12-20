@@ -66,10 +66,11 @@
 
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // Add useNavigate
 import pgimage from '../../assets/images/WhatsApp3.jpeg'
 
 function Signup() {
+    const navigate = useNavigate(); // Add this
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -86,16 +87,18 @@ function Signup() {
             const res = await result.json();
 
             if (res.success) {
-                // Redirect the user on successful login
-                window.location.href = res.redirect;
+                // Use navigate instead of window.location
+                navigate('/OwnerLogin');
             } else {
-                console.error(res.message); // Handle error messages
+                alert(res.message || 'Signup failed'); // Add user feedback
             }
         } catch (error) {
             console.error('Error:', error);
+            alert('An error occurred during signup'); // Add user feedback
         }
     };
 
+    // Rest of your component remains the same
     return (
         <div className="flex h-screen">
             <div className="w-1/2 bg-gradient-to-l from-black to-gray-700 flex flex-col justify-center items-center p-8">
