@@ -79,9 +79,11 @@
 
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { Link, useNavigate } from 'react-router-dom'; 
 import pgimage from '../../assets/images/WhatsApp3.jpeg'
 
 function Login() {
+    const navigate = useNavigate(); 
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
 
     const onSubmit = async (data) => {
@@ -97,12 +99,13 @@ function Login() {
 
             if (res.success) {
                 // Redirect the user on successful login
-                window.location.href = res.redirect;
+                navigate('/OwnerHome');
             } else {
-                console.error(res.message); // Handle error messages
+                alert(res.message || 'Signup failed'); // Add user feedback
             }
         } catch (error) {
             console.error('Error:', error);
+            alert('An error occurred during signup'); // Add user feedback
         }
     };
 
@@ -110,8 +113,7 @@ function Login() {
         <div className="flex h-screen">
             {/* Left Section */}
             <div className="w-1/2 bg-gradient-to-l from-black to-gray-700 flex flex-col justify-center items-center p-8">
-           
-              <h2 className="text-2xl font-bold text-center text-white">Login</h2>
+                <h2 className="text-2xl font-bold text-center text-white">Login</h2>
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                         {/* Email Input */}
                         <div>
