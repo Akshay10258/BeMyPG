@@ -7,17 +7,25 @@ const path = require('path');
 const { connectomongodb } = require("./connect")
 const app = express()
 
-// Move CORS configuration before any middleware or logging
 app.use(cors({
-  origin: ['https://be-my-pg.vercel.app', 'https://be-my-pg-77p3.vercel.app'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  credentials: true,
-  allowedHeaders: ['Content-Type', 'Authorization', 'Cookie'],
-  exposedHeaders: ['set-cookie']
+  origin: ['https://be-my-pg.vercel.app', 'https://be-my-pg-77p3.vercel.app'], // Allowed origins
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
+  credentials: true, // Required for cookies
+  allowedHeaders: ['Content-Type', 'Authorization', 'Cookie'], // Allowed headers
+  exposedHeaders: ['set-cookie'] // Expose set-cookie header
 }));
+
+
 
 // Add explicit OPTIONS handling
 app.options('*', cors());
+
+app.use((req, res, next) => {
+  console.log('Incoming request:', req.method, req.url);
+  console.log('Cookies:', req.cookies); // Log cookies
+  console.log('Origin:', req.headers.origin); // Log origin
+  next();
+});
 
 // Add logging middleware after CORS
 app.use((req, res, next) => {

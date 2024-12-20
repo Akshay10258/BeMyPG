@@ -2,7 +2,6 @@ const jwt=require("jsonwebtoken")
 const secret="Amogh$123"
 function setuser(user)
 {
-   
     const payload={
         _id: user._id,
         email:user.email,

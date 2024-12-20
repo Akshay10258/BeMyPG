@@ -14,8 +14,9 @@ const OwnerProfile = () => {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    credentials: 'include',
+                    credentials: 'include', // Send cookies with the request
                 });
+                
                 if (!response.ok) {
                     throw new Error('Failed to fetch data');
                 }

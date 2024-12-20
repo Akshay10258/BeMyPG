@@ -2,7 +2,6 @@ const jwt=require("jsonwebtoken")
 const secret="Amogh$124"
 function setuser(user)
 {
-   
     const payload={
         _id: user._id,
         email:user.email,
@@ -24,11 +23,9 @@ function getuser(token)
 }
 
 // const sessionIdToUserMap=new Map()
- 
 // function setuser(id,user)
 // {
 //     const a=sessionIdToUserMap.set(id,user);
-  
 //     console.log("setted id",a);
 // }
 
