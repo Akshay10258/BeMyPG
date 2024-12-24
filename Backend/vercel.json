@@ -11,10 +11,5 @@
       "src": "/(.*)",
       "dest": "/"
     }
-  ],
-  "build": {
-    "commands": {
-      "install": "npm install --legacy-peer-deps"
-    }
-  }
+  ]
 }
