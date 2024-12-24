@@ -369,7 +369,7 @@ const PgBookings = () => {
     useEffect(() => {
         const fetchPGDetails = async () => {
             try {
-                const response = await fetch('https://be-my-pg-77p3.vercel.app/ViewPgDetails', {
+                const response = await fetch('https://be-my-pg-77p4.vercel.app/ViewPgDetails', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
