@@ -15,7 +15,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(cookieParser());
 
 app.use(cors({
-  origin: ['https://be-my-pg.vercel.app', 'https://be-my-pg-77p3.vercel.app'], // Allowed origins
+  origin: ['https://be-my-pg.vercel.app', 'https://be-my-pg-77p4.vercel.app'], // Allowed origins
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
   credentials: true, // Required for cookies
   allowedHeaders: ['Content-Type', 'Authorization', 'Cookie'], // Allowed headers
