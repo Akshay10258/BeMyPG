@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "build": "npm install --legacy-peer-deps && npm run build"
+    "build": "npm install --legacy-peer-deps"
   },
   "dependencies": {
     "body-parser": "^1.20.3",
