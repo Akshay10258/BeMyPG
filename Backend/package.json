@@ -5,7 +5,6 @@
   "description": "Backend server for PG Finder application",
   "main": "index.js",
   "scripts": {
-    "preinstall": "npm config set legacy-peer-deps true",
     "start": "node app.js",
     "dev": "nodemon app.js",
     "build": "npm install"
@@ -18,14 +17,11 @@
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.10.0",
     "mongoose": "^8.7.3",
-    "multer": "^1.4.4",
+    "multer": "1.4.4",
     "multer-gridfs-storage": "^5.0.2",
     "uuid": "^11.0.2"
   },
   "devDependencies": {
     "nodemon": "^3.1.7"
-  },
-  "overrides": {
-    "multer": "1.4.4"
   }
 }
