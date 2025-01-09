@@ -1,18 +1,6 @@
 const express = require('express');
 const cors = require("cors");
-const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
-const path = require('path');
-const cookieParser=require("cookie-parser");
-const { GridFSBucket } = require('mongodb');
-
-const { connectomongodb } = require("./connect")
-const app = express()
-app.use(bodyParser.json())
-app.use(express.json());
-app.use(express.urlencoded({extended:false}));
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.use(cookieParser());
+const app = express();
 
 app.use(cors({
   origin: ['https://be-my-pg.vercel.app', 'https://be-my-pg-77p4.vercel.app'], // Allowed origins
@@ -21,8 +9,19 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization', 'Cookie'], // Allowed headers
   exposedHeaders: ['set-cookie'] // Expose set-cookie header
 }));
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const path = require('path');
+const cookieParser=require("cookie-parser");
+const { GridFSBucket } = require('mongodb');
 
+const { connectomongodb } = require("./connect")
 
+app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.urlencoded({extended:false}));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use(cookieParser());
 
 // Add explicit OPTIONS handling
 app.options('*', cors());
