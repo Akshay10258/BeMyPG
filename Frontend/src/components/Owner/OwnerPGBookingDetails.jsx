@@ -394,7 +394,7 @@ const PgBookings = () => {
     // Handle booking status update
     const updateBookingStatus = async (pgId, bookingId, newStatus, roomType) => {
         try {
-            const response = await fetch('https://be-my-pg-77p3.vercel.app/updateBookingStatus', {
+            const response = await fetch('https://be-my-pg-77p4.vercel.app/updateBookingStatus', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

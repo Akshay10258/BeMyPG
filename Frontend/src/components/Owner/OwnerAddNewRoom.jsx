@@ -209,7 +209,7 @@ const OwnerAddPG = () => {
                 formData.append("images", data.images[i]);
             }
         
-            const result = await fetch('https://be-my-pg-77p3.vercel.app/AddNewRoom/', {
+            const result = await fetch('https://be-my-pg-77p4.vercel.app/AddNewRoom/', {
                 method: "POST",
                 body: formData,
                 credentials: "include"
