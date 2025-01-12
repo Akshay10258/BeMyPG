@@ -160,7 +160,7 @@ const multer = require("multer");
 const multerGridFSStorage = require("multer-gridfs-storage");
 const { GridFSBucket } = require("mongodb");
 
-const uri = "mongodb+srv://your_mongodb_connection_string"; // Replace with your MongoDB connection string
+const uri = "mongodb+srv://dbBeMyPGAkshay:akshay1234@cluster0.mjpm5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"; // Replace with your MongoDB connection string
 const conn = mongoose.createConnection(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Wait for the MongoDB connection

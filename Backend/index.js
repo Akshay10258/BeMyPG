@@ -20,7 +20,7 @@ const { connectomongodb } = require("./connect")
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(path.join(__dirname,'uploads')));
 app.use(cookieParser());
 
 // Add explicit OPTIONS handling

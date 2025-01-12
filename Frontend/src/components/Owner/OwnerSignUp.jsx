@@ -84,6 +84,7 @@ function Signup() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data)
             });
+            
             const res = await result.json();
 
             if (res.success) {
