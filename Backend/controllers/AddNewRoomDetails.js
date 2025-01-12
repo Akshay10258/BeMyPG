@@ -155,13 +155,14 @@
 
 // module.exports = { AddNewRoom };
 
+const pgModel =require("../models/AddPGdetails")
 const mongoose = require("mongoose");
 const multer = require("multer");
-const multerGridFSStorage = require("multer-gridfs-storage");
+const { GridFsStorage } = require('multer-gridfs-storage'); // Changed this line
 const { GridFSBucket } = require("mongodb");
 
-const uri = "mongodb+srv://dbBeMyPGAkshay:akshay1234@cluster0.mjpm5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"; // Replace with your MongoDB connection string
-const conn = mongoose.createConnection(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+const uri = "mongodb+srv://dbBeMyPGAkshay:akshay1234@cluster0.mjpm5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const conn = mongoose.createConnection(uri);
 
 // Wait for the MongoDB connection
 conn.once("open", () => {
@@ -169,13 +170,13 @@ conn.once("open", () => {
 });
 
 // Configure GridFS Storage
-const storage = new multerGridFSStorage({
+const storage = new GridFsStorage({  // Changed from multerGridFSStorage to GridFsStorage
     url: uri,
     file: (req, file) => {
-    return {
-      bucketName: 'uploads', // Name of the GridFS bucket
-      filename: Date.now() + '-' + file.originalname, // Set the filename as the current timestamp to avoid collisions
-    };
+        return {
+            bucketName: 'uploads',
+            filename: Date.now() + '-' + file.originalname,
+        };
     },
 });
 
@@ -183,53 +184,52 @@ const upload = multer({ storage });
 
 // Controller function for adding a new room
 const AddNewRoom = async (req, res) => {
-  // Use multer to handle file upload
-  upload.array("images", 10)(req, res, async (err) => { // Limit to 10 images
-    if (err) {
-        console.log("Multer error:", err);
-        return res.status(400).send("Error uploading file: " + err.message);
-    }
-
-    // If no files uploaded
-    if (!req.files || req.files.length === 0) {
-        return res.status(400).send("No images uploaded");
-    }
-
-    // Log the files for debugging
-    console.log("Files uploaded:", req.files);
-
-    const body = req.body;
-    const numObj = {
-        "single occupancy": 0,
-        "double occupancy": 1,
-        "triple occupancy": 2,
-    };
-    const num = numObj[body.occupancy];
-
-    // Prepare the image paths for the database (you can use the file IDs or filenames)
-    const imagePaths = req.files.map(file => `/uploads/${file.filename}`);
-
-    // Assuming you are storing the room details in a MongoDB collection
-    const ownerId = req.user._id; // Ensure you have user authentication set up
-
-    try {
-        const result = await pgModel.updateOne(
-        { createdBy: ownerId }, // Replace with the actual PG ID
-        {
-            $set: {
-            [`Rooms.${num}.RoomPrice`]: body.Roomprice,
-            [`Rooms.${num}.VacantRooms`]: body.VacantRooms,
-            [`Rooms.${num}.Images`]: imagePaths,
-            }
+    // Use multer to handle file upload
+    upload.array("images", 10)(req, res, async (err) => {
+        if (err) {
+            console.log("Multer error:", err);
+            return res.status(400).json({ error: "Error uploading file: " + err.message });
         }
-        );
 
-        console.log("Update Result:", result);
-        res.send("Room details added with image paths");
-    } catch (error) {
-        console.error("Error updating room:", error);
-        res.status(500).send("Error updating room details");
-    }
+        // If no files uploaded
+        if (!req.files || req.files.length === 0) {
+            return res.status(400).json({ error: "No images uploaded" });
+        }
+
+        // Log the files for debugging
+        console.log("Files uploaded:", req.files);
+
+        const body = req.body;
+        const numObj = {
+            "single occupancy": 0,
+            "double occupancy": 1,
+            "triple occupancy": 2,
+        };
+        const num = numObj[body.occupancy];
+
+        // Store file info from GridFS
+        const imagePaths = req.files.map(file => file.id); // Changed to store GridFS file IDs
+
+        const ownerId = req.user._id;
+
+        try {
+            const result = await pgModel.updateOne(
+                { createdBy: ownerId },
+                {
+                    $set: {
+                        [`Rooms.${num}.RoomPrice`]: body.Roomprice,
+                        [`Rooms.${num}.VacantRooms`]: body.VacantRooms,
+                        [`Rooms.${num}.Images`]: imagePaths,
+                    }
+                }
+            );
+
+            console.log("Update Result:", result);
+            res.json({ message: "Room details added successfully", imageIds: imagePaths });
+        } catch (error) {
+            console.error("Error updating room:", error);
+            res.status(500).json({ error: "Error updating room details" });
+        }
     });
 };
 
