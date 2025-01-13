@@ -199,7 +199,7 @@ const OwnerAddPG = () => {
 
     const onSubmit = async (data) => {
         try {
-            console.log(data);
+            console.log('Submitting data:', data);
         
             const formData = new FormData();
             formData.append("occupancy", data.occupancy);
@@ -211,23 +211,24 @@ const OwnerAddPG = () => {
                 formData.append("images", data.images[i]);
             }
         
-            const result = await fetch('https://be-my-pg-77p4.vercel.app/AddNewRoom/', {
+            const result = await fetch('https://be-my-pg-77p4.vercel.app/AddNewRoom', {
                 method: "POST",
                 body: formData,
-                credentials: "include"
+                credentials: "include",
             });
-
+    
             if (!result.ok) {
-                throw new Error(`HTTP error! status: ${result.status}`);
+                const errorText = await result.text();
+                throw new Error(`HTTP error! status: ${result.status}, message: ${errorText}`);
             }
         
             const res = await result.text();
             console.log('Success:', res);
-            // Add success handling here
+            // Add success notification here
             
         } catch (error) {
-            console.error('Error:', error);
-            // Add error handling here
+            console.error('Fetch Error:', error);
+            // Add error notification here
         }
     };
     
