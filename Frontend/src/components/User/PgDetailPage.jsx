@@ -88,7 +88,7 @@ const PgDetailPage = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const profileResponse = await fetch('https://be-my-pg-77p3.vercel.app/UserProfile', {
+                const profileResponse = await fetch('https://be-my-pg-77p4.vercel.app/UserProfile', {
                     method: 'GET',
                     credentials: 'include',
                 });
@@ -142,7 +142,7 @@ const PgDetailPage = () => {
         }
         
         try {
-            const response = await fetch('https://be-my-pg-77p3.vercel.app/ScheduleVisit', {
+            const response = await fetch('https://be-my-pg-77p4.vercel.app/ScheduleVisit', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

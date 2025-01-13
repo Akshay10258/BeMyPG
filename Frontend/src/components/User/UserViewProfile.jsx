@@ -9,7 +9,7 @@ const UserProfile = () => {
         // Fetch User profile and PG details from the backend
         const fetchData = async () => {
             try {
-                const response = await fetch('https://be-my-pg-77p3.vercel.app/UserProfile',{method: "GET",credentials:"include"}); // Adjust API endpoint as needed
+                const response = await fetch('https://be-my-pg-77p4.vercel.app/UserProfile',{method: "GET",credentials:"include"}); // Adjust API endpoint as needed
                 if (!response.ok) {
                     throw new Error('Failed to fetch data');
                 }

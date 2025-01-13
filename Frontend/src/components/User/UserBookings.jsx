@@ -11,7 +11,7 @@ const MyBookings = () => {
         const fetchData = async () => {
             try {
                 // Fetch user profile to get the email
-                const profileResponse = await fetch('https://be-my-pg-77p3.vercel.app/UserProfile', {
+                const profileResponse = await fetch('https://be-my-pg-77p4.vercel.app/UserProfile', {
                     method: 'GET',
                     credentials: 'include', // Include cookies for authentication
                 });
@@ -25,7 +25,7 @@ const MyBookings = () => {
                 console.log('User Email:', userEmail);
 
                 // Fetch bookings using the email
-                const bookingsResponse = await fetch('https://be-my-pg-77p3.vercel.app/userBookings', {
+                const bookingsResponse = await fetch('https://be-my-pg-77p4.vercel.app/userBookings', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ const MyBookings = () => {
                 setBookings(bookingsData);
 
                 // Fetch scheduled visits using the email
-                const visitsResponse = await fetch('https://be-my-pg-77p3.vercel.app/userScheduledVisits', {
+                const visitsResponse = await fetch('https://be-my-pg-77p4.vercel.app/userScheduledVisits', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

@@ -235,98 +235,182 @@
 
 // module.exports = { AddNewRoom };
 
+// const pgModel = require("../models/AddPGdetails");
+// const mongoose = require("mongoose");
+// const multer = require("multer");
+// const { GridFsStorage } = require('multer-gridfs-storage');
+// const util = require('util');
+
+// const uri = "mongodb+srv://dbBeMyPGAkshay:akshay1234@cluster0.mjpm5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+// const conn = mongoose.createConnection(uri);
+
+// // GridFS storage configuration
+// const storage = new GridFsStorage({
+//     url: uri,
+//     file: (req, file) => {
+//         const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+//         if (!allowedTypes.includes(file.mimetype)) {
+//             return Promise.reject(new Error('Invalid file type'));
+//         }
+
+//         return {
+//             bucketName: 'uploads',
+//             filename: `${Date.now()}-${file.originalname}`,
+//             metadata: {
+//                 originalName: file.originalname,
+//                 uploadDate: new Date()
+//             }
+//         };
+//     }
+// });
+
+// const upload = multer({
+//     storage,
+//     limits: { fileSize: 5 * 1024 * 1024 },
+// });
+
+// const uploadFiles = util.promisify(upload.array("images", 10));
+
+// // Controller function
+// const AddNewRoom = async (req, res) => {
+//     try {
+//         await uploadFiles(req, res);
+
+//         // Validate inputs
+//         if (!req.files || req.files.length === 0) {
+//             return res.status(400).json({ error: "No images uploaded" });
+//         }
+
+//         if (!req.user || !req.user._id) {
+//             return res.status(401).json({ error: "User not authenticated" });
+//         }
+
+//         const { occupancy, Roomprice, VacantRooms } = req.body;
+//         if (!occupancy || !Roomprice || !VacantRooms) {
+//             return res.status(400).json({ error: "Missing required fields" });
+//         }
+
+//         const occupancyMap = {
+//             "single occupancy": 0,
+//             "double occupancy": 1,
+//             "triple occupancy": 2,
+//         };
+
+//         if (!(occupancy in occupancyMap)) {
+//             return res.status(400).json({ error: "Invalid occupancy type" });
+//         }
+
+//         const roomIndex = occupancyMap[occupancy];
+//         const imageIds = req.files.map(file => file.id);
+//         const ownerId = req.user._id;
+
+//         const result = await pgModel.updateOne(
+//             { createdBy: ownerId },
+//             {
+//                 $set: {
+//                     [`Rooms.${roomIndex}.RoomPrice`]: Roomprice,
+//                     [`Rooms.${roomIndex}.VacantRooms`]: VacantRooms,
+//                     [`Rooms.${roomIndex}.Images`]: imageIds,
+//                 },
+//             }
+//         );
+
+//         if (result.matchedCount === 0) {
+//             return res.status(404).json({ error: "No PG found for this owner" });
+//         }
+
+//         res.status(200).json({
+//             message: "Room details added successfully",
+//             imageIds,
+//         });
+//     } catch (error) {
+//         console.error("Error in AddNewRoom:", error);
+//         res.status(500).json({ error: "Internal Server Error", details: error.message });
+//     }
+// };
+
+// module.exports = { AddNewRoom };
+
 const pgModel = require("../models/AddPGdetails");
 const mongoose = require("mongoose");
-const multer = require("multer");
-const { GridFsStorage } = require('multer-gridfs-storage');
-const util = require('util');
+const cors = require('cors'); // CORS is still needed for cross-origin requests
 
 const uri = "mongodb+srv://dbBeMyPGAkshay:akshay1234@cluster0.mjpm5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 const conn = mongoose.createConnection(uri);
 
-// GridFS storage configuration
-const storage = new GridFsStorage({
-    url: uri,
-    file: (req, file) => {
-        const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
-        if (!allowedTypes.includes(file.mimetype)) {
-            return Promise.reject(new Error('Invalid file type'));
-        }
+// CORS configuration
+const corsOptions = {
+    origin: 'https://be-my-pg.vercel.app', // Your frontend domain
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+};
 
-        return {
-            bucketName: 'uploads',
-            filename: `${Date.now()}-${file.originalname}`,
-            metadata: {
-                originalName: file.originalname,
-                uploadDate: new Date()
-            }
-        };
-    }
+// Wait for the MongoDB connection
+conn.once("open", () => {
+    console.log("MongoDB connected!");
 });
 
-const upload = multer({
-    storage,
-    limits: { fileSize: 5 * 1024 * 1024 },
-});
-
-const uploadFiles = util.promisify(upload.array("images", 10));
-
-// Controller function
+// Controller function for adding a new room
 const AddNewRoom = async (req, res) => {
-    try {
-        await uploadFiles(req, res);
-
-        // Validate inputs
-        if (!req.files || req.files.length === 0) {
-            return res.status(400).json({ error: "No images uploaded" });
+    // Apply CORS
+    cors(corsOptions)(req, res, async () => {
+        // Validate request body
+        if (!req.body.occupancy || !req.body.Roomprice || !req.body.VacantRooms) {
+            return res.status(400).json({ error: "Missing required fields" });
         }
 
         if (!req.user || !req.user._id) {
             return res.status(401).json({ error: "User not authenticated" });
         }
 
-        const { occupancy, Roomprice, VacantRooms } = req.body;
-        if (!occupancy || !Roomprice || !VacantRooms) {
-            return res.status(400).json({ error: "Missing required fields" });
-        }
-
-        const occupancyMap = {
+        const body = req.body;
+        const numObj = {
             "single occupancy": 0,
             "double occupancy": 1,
             "triple occupancy": 2,
         };
 
-        if (!(occupancy in occupancyMap)) {
+        if (!(body.occupancy in numObj)) {
             return res.status(400).json({ error: "Invalid occupancy type" });
         }
 
-        const roomIndex = occupancyMap[occupancy];
-        const imageIds = req.files.map(file => file.id);
+        const num = numObj[body.occupancy];
         const ownerId = req.user._id;
 
-        const result = await pgModel.updateOne(
-            { createdBy: ownerId },
-            {
-                $set: {
-                    [`Rooms.${roomIndex}.RoomPrice`]: Roomprice,
-                    [`Rooms.${roomIndex}.VacantRooms`]: VacantRooms,
-                    [`Rooms.${roomIndex}.Images`]: imageIds,
-                },
+        try {
+            // Update PG details without image upload
+            const result = await pgModel.updateOne(
+                { createdBy: ownerId },
+                {
+                    $set: {
+                        [`Rooms.${num}.RoomPrice`]: body.Roomprice,
+                        [`Rooms.${num}.VacantRooms`]: body.VacantRooms,
+                    }
+                }
+            );
+
+            if (result.matchedCount === 0) {
+                return res.status(404).json({ error: "No PG found for this owner" });
             }
-        );
 
-        if (result.matchedCount === 0) {
-            return res.status(404).json({ error: "No PG found for this owner" });
+            if (result.modifiedCount === 0) {
+                return res.status(400).json({ error: "No changes were made" });
+            }
+
+            console.log("Update Result:", result);
+            res.status(200).json({
+                message: "Room details added successfully",
+                updateResult: result
+            });
+        } catch (error) {
+            console.error("Error updating room:", error);
+            res.status(500).json({
+                error: "Error updating room details",
+                details: error.message
+            });
         }
-
-        res.status(200).json({
-            message: "Room details added successfully",
-            imageIds,
-        });
-    } catch (error) {
-        console.error("Error in AddNewRoom:", error);
-        res.status(500).json({ error: "Internal Server Error", details: error.message });
-    }
+    });
 };
 
 module.exports = { AddNewRoom };
