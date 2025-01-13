@@ -356,6 +356,7 @@ const AddNewRoom = async (req, res) => {
     // Apply CORS
     cors(corsOptions)(req, res, async () => {
         // Validate request body
+        console.log("herehere",req.body)
         if (!req.body.occupancy || !req.body.Roomprice || !req.body.VacantRooms) {
             return res.status(400).json({ error: "Missing required fields" });
         }

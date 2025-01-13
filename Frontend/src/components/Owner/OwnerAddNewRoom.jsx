@@ -318,7 +318,7 @@ const OwnerAddPG = () => {
 
             // Now there is no image data to append
 
-            const result = await fetch('https://be-my-pg-77p4.vercel.app/AddNewRoom', {
+            const result = await fetch('https://be-my-pg-77p4.vercel.app/AddNewRoom/', {
                 method: "POST",
                 body: formData,
                 credentials: "include",
