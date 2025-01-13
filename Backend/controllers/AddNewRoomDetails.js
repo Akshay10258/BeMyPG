@@ -241,7 +241,7 @@ const multer = require("multer");
 const { GridFsStorage } = require('multer-gridfs-storage');
 const util = require('util');
 
-const uri = "your-mongo-uri";
+const uri = "mongodb+srv://dbBeMyPGAkshay:akshay1234@cluster0.mjpm5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 const conn = mongoose.createConnection(uri);
 
 // GridFS storage configuration
