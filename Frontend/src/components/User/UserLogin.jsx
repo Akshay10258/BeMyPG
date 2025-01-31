@@ -12,7 +12,6 @@ function Login() {
             const result = await fetch('https://be-my-pg-77p4.vercel.app/user/login/', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                mode: 'no-cors',
                 body: JSON.stringify(data),
                 credentials:"include",
             });
@@ -22,7 +21,7 @@ function Login() {
                 // Redirect the user on successful login
                 navigate('/UserHome');
             } else {
-                alert(res.message || 'Signup failed'); // Add user feedback
+                alert(res.message || 'Login failed'); // Add user feedback
             }
         } catch (error) {
             console.error('Error:', error);
