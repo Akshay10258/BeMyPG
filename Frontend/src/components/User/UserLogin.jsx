@@ -2,10 +2,10 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import pgimage from '../../assets/images/WhatsApp5.jpeg'
-
+import { Link, useNavigate } from 'react-router-dom'; 
 function Login() {
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
-
+    const navigate = useNavigate(); 
     const onSubmit = async (data) => {
         console.log('Form Data:', data);
         try {
@@ -19,9 +19,10 @@ function Login() {
             const res = await result.json();
     
             if (res.success) {
-                window.location.href = res.redirect; // Redirect the user on the frontend
+                // Redirect the user on successful login
+                navigate('/UserHome');
             } else {
-                console.error(res.message); // Handle any error messages
+                alert(res.message || 'Signup failed'); // Add user feedback
             }
         } catch (error) {
             console.error('Error:', error);
