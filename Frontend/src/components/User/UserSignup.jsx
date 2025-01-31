@@ -87,10 +87,10 @@ function Signup() {
             const res = await result.json();
 
             if (res.success) {
-                // Redirect the user on successful login
-                window.location.href = res.redirect;
+                // Use navigate instead of window.location
+                navigate('/UserLogin');
             } else {
-                console.error(res.message); // Handle error messages
+                alert(res.message || 'Signup failed'); // Add user feedback
             }
         } catch (error) {
             console.error('Error:', error);

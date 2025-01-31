@@ -9,6 +9,7 @@ async function signup(req,res) {
         email,
         password,
     });
+    console.log("Signed in")
     return res.json({ success: true, redirect: "https://be-my-pg.vercel.app/UserLogin" });
 }
 
