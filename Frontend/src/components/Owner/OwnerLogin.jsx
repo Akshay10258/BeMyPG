@@ -74,7 +74,6 @@
 //         </div>
 //     );
 // }
-
 // export default Login;
 
 import React from 'react';
@@ -98,7 +97,6 @@ function Login() {
             const res = await result.json();
 
             if (res.success) {
-                // Redirect the user on successful login
                 navigate('/OwnerHome');
             } else {
                 alert(res.message || 'Signup failed'); // Add user feedback
