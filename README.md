@@ -1,7 +1,7 @@
 # MERN STACK WEB APPLICATION
 
 - App to find PG's and also list PG(for owner) based on cities.
-- User authentication usint JWT.
+- User authentication using JWT.
 - Frontend made using react .
 - Hosted on : https://be-my-pg.vercel.app
 - Feautures :
@@ -16,4 +16,4 @@
     - Real Time Seat availability
     - View Profile and Bookings
     - FAQ’s
-    - Payment Gateway
+    - Payment Page(dummy)
