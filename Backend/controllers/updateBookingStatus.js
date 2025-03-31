@@ -1,5 +1,5 @@
 const pgModel = require("../models/AddPGdetails");
-
+const client_URL = process.env.client_URL 
 const updateBookingStatus = async(req,res) => {
     const { pgId, bookingId, newStatus, roomType } = req.body;
     console.log(req.body)
@@ -29,7 +29,7 @@ const updateBookingStatus = async(req,res) => {
         booking.bookingStatus = newStatus; // Update status
         await pg.save();
 
-        return res.json({ success: true, redirect: "https://be-my-pg.vercel.app/OwnerHome" });
+        return res.json({ success: true, redirect: `${client_URL}/OwnerHome` });
     } catch (error) {
         console.error('Error updating booking status:', error);
         res.status(500).json({ message: 'Internal server error' });

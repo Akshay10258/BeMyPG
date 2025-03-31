@@ -1,80 +1,6 @@
-// import React, { useState } from 'react';
-
-// const PaymentPage = () => {
-//   const [cardNumber, setCardNumber] = useState('');
-//   const [expiryDate, setExpiryDate] = useState('');
-//   const [cvv, setCvv] = useState('');
-//   const [error, setError] = useState('');
-
-//   const handlePayment = (e) => {
-//     e.preventDefault();
-
-//     if (!cardNumber || !expiryDate || !cvv) {
-//       setError('Please fill in all fields.');
-//       return;
-//     }
-
-    
-//     setError('');
-
-  
-//     alert('Payment processed successfully!');
-
-    
-//   };
-
-//   return (
-//     <div className="h-screen bg-gradient-to-l from-gray-600 to-black">
-//     <div className="max-w-md mx-auto p-8 bg-gray-900 shadow-lg rounded-lg justify-center">
-//       <h2 className="text-white text-2xl font-semibold mb-6">Payment Page</h2>
-//       {error && <div className="text-red-500 mb-4">{error}</div>}
-//       <form onSubmit={handlePayment}>
-//         <div className="mb-4">
-//           <label className="block text-white mb-2">Card Number:</label>
-//           <input
-//             type="text"
-//             value={cardNumber}
-//             onChange={(e) => setCardNumber(e.target.value)}
-//             className="w-full p-3 bg-gray-800 text-white rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-//             required
-//           />
-//         </div>
-//         <div className="mb-4">
-//           <label className="block text-white mb-2">Expiry Date (MM/YY):</label>
-//           <input
-//             type="text"
-//             value={expiryDate}
-//             onChange={(e) => setExpiryDate(e.target.value)}
-//             className="w-full p-3 bg-gray-800 text-white rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-//             required
-//           />
-//         </div>
-//         <div className="mb-4">
-//           <label className="block text-white mb-2">CVV:</label>
-//           <input
-//             type="text"
-//             value={cvv}
-//             onChange={(e) => setCvv(e.target.value)}
-//             className="w-full p-3 bg-gray-800 text-white rounded-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-//             required
-//           />
-//         </div>
-//         <button
-//           type="submit"
-//           className="w-full py-3 mt-6 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-//         >
-//           Pay
-//         </button>
-//       </form>
-//     </div>
-//     </div>
-//   );
-// };
-
-// export default PaymentPage;
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-
+const server_URL=import.meta.env.VITE_server_URL;
 const PaymentPage = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
@@ -100,7 +26,7 @@ const PaymentPage = () => {
         // Fetch User profile and PG details from the backend
         const fetchData = async () => {
             try {
-                const response = await fetch('https://be-my-pg-77p4.vercel.app/UserProfile',{method: "GET",credentials:"include"}); // Adjust API endpoint as needed
+                const response = await fetch(`${server_URL}/UserProfile`,{method: "GET",credentials:"include"}); // Adjust API endpoint as needed
                 if (!response.ok) {
                     throw new Error('Failed to fetch data');
                 }
@@ -125,7 +51,7 @@ const PaymentPage = () => {
     const handleBookPg=async() => {
       console.log("Datatata",UserData)
 
-      const result = await fetch('https://be-my-pg-77p4.vercel.app//BookPg', {
+      const result = await fetch(`${server_URL}/BookPg`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({UserData}),
@@ -138,9 +64,6 @@ const PaymentPage = () => {
       console.log("data",data)
 
     }
-  
-
-
 
   const handlePayment = (e) => {
     e.preventDefault();

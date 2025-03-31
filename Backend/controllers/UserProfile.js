@@ -11,10 +11,12 @@ const UserProfile = async(req,res) => {
     const profile ={
         "user": {
             Userid:userId,
+            name: result.name,
             email: result.email,
             },
         }
         console.log("profile",profile);
+        
         res.send(profile);
     }   
 

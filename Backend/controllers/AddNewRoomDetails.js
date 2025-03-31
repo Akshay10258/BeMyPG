@@ -334,13 +334,13 @@
 const pgModel = require("../models/AddPGdetails");
 const mongoose = require("mongoose");
 const cors = require('cors'); // CORS is still needed for cross-origin requests
-
+const client_URL = process.env.client_URL 
 const uri = "mongodb+srv://dbBeMyPGAkshay:akshay1234@cluster0.mjpm5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 const conn = mongoose.createConnection(uri);
 
 // CORS configuration
 const corsOptions = {
-    origin: 'https://be-my-pg.vercel.app', // Your frontend domain
+    origin: `${client_URL}`, // Your frontend domain
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']

@@ -128,6 +128,7 @@
 //     console.log(`Example app listening on port ${port}`)
 // })
 
+require('dotenv').config();
 const express = require('express');
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -136,7 +137,8 @@ const path = require('path');
 const cookieParser = require("cookie-parser");
 const { GridFSBucket } = require('mongodb');
 const { connectomongodb } = require("./connect");
-
+const client_URL = process.env.client_URL; 
+const server_URL = process.env.server_URL; 
 const app = express();
 
 // Create MongoDB connection
@@ -144,7 +146,7 @@ const conn = mongoose.createConnection("mongodb+srv://dbBeMyPGAkshay:akshay1234@
 
 // CORS configuration 
 app.use(cors({
- origin: ['https://be-my-pg.vercel.app', 'https://be-my-pg-77p4.vercel.app'],
+ origin: [`${client_URL}`, `${server_URL}`],
  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
  credentials: true,
  allowedHeaders: ['Content-Type', 'Authorization', 'Cookie', 'X-Requested-With'],
@@ -198,11 +200,12 @@ const BookPg = require("./routes/BookPg.js");
 const ScheduleVisit = require("./routes/ScheduleVisit.js");
 const updateBookingStatus = require("./routes/updateBookingStatus.js");
 const userBookings = require("./routes/userBookings.js");
+const logOut = require("./routes/logout.js");
 const userScheduledVisits = require("./routes/userScheduledVisits.js");
 
 // Basic route
 app.get("/", (req, res) => {
- res.json("Hello");
+  res.json("Hello");
 });
 
 // Routes with middleware
@@ -210,15 +213,17 @@ app.use("/AddNewPgOwner", restrictToLoggedinUserOnly, AddNewPgRoute);
 app.use("/AddNewRoom", restrictToLoggedinUserOnly, AddNewRoomRoute);
 app.use("/ViewPgDetails", restrictToLoggedinUserOnly, ViewPgDetailsRoute);
 app.use("/OwnerProfile", restrictToLoggedinUserOnly, OwnerProfile);
+app.use("/updateBookingStatus", restrictToLoggedinUserOnly, updateBookingStatus);
+
 app.use("/UserProfile", restrictToLoggedinPgUserOnly, UserProfile);
 app.use("/UserFindPgByCity", restrictToLoggedinPgUserOnly, UserFindPgByCity);
 app.use("/GetPgByCity", restrictToLoggedinPgUserOnly, GetPgByCity);
-app.use("/updateBookingStatus", restrictToLoggedinPgUserOnly, updateBookingStatus);
 app.use("/userBookings", restrictToLoggedinPgUserOnly, userBookings);
 app.use("/userScheduledVisits", restrictToLoggedinPgUserOnly, userScheduledVisits);
 app.use("/BookPg", restrictToLoggedinPgUserOnly, BookPg);
 app.use("/rating", restrictToLoggedinPgUserOnly, rating);
 app.use("/ScheduleVisit", restrictToLoggedinPgUserOnly, ScheduleVisit);
+app.use("/logout", logOut);
 
 app.use("/", staticRoute);
 app.use("/owner", pgowner);

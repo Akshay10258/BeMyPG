@@ -3,13 +3,15 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import pgimage from '../../assets/images/WhatsApp5.jpeg'
 import { Link, useNavigate } from 'react-router-dom'; 
+
+const server_URL=import.meta.env.VITE_server_URL;
 function Login() {
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
     const navigate = useNavigate(); 
     const onSubmit = async (data) => {
         console.log('Form Data:', data);
         try {
-            const result = await fetch('https://be-my-pg-77p4.vercel.app/user/login/', {
+            const result = await fetch(`${server_URL}/user/login/`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data),

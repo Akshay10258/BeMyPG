@@ -22,19 +22,6 @@ function getuser(token)
     }
 }
 
-// const sessionIdToUserMap=new Map()
-// function setuser(id,user)
-// {
-//     const a=sessionIdToUserMap.set(id,user);
-//     console.log("setted id",a);
-// }
-
-// function getuser(id)
-// {
-//     const b= sessionIdToUserMap.get(id);
-//     console.log("getted id",b)
-//     return b;
-// }
 
 module.exports={
     setuser,

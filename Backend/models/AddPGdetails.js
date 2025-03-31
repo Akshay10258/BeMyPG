@@ -19,7 +19,7 @@
                 required: true,
             },
             PriceRange: {
-                type: Number,
+                type: String,
                 required: true,
             },
             Rooms: [
@@ -59,6 +59,10 @@
                         type: String,
                         required: true,
                     },
+                    userName:{
+                        type:String,
+                        // required: true,
+                    }
                 },
             ],
             

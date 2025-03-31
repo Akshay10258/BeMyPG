@@ -3,7 +3,7 @@ const pgModel = require("../models/AddPGdetails");
 // Ensure pg_id is a valid ObjectId
 const addRatingAndReview = async (req, res) => {
     try {
-        const { pg_id, ratings, feedback } = req.body;
+        const { pg_id, ratings, feedback, userName } = req.body;
 
         // const body=req.body;
         console.log("id",ratings,feedback);
@@ -12,7 +12,7 @@ const addRatingAndReview = async (req, res) => {
             {
                 $push: {
                     Review: { rating: ratings },    // Push an object with `rating` field
-                    Feedback: { message: feedback } // Append review to the Feedback array
+                    Feedback: { message: feedback,userName:userName } // Append review to the Feedback array
                 }
             }
         );

@@ -68,7 +68,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom'; // Add useNavigate
 import pgimage from '../../assets/images/WhatsApp3.jpeg'
-
+const server_URL=import.meta.env.VITE_server_URL;
 function Signup() {
     const navigate = useNavigate(); // Add this
     const [email, setEmail] = useState('');
@@ -79,7 +79,7 @@ function Signup() {
 
     const onSubmit = async (data) => {
         try {
-            const result = await fetch('https://be-my-pg-77p4.vercel.app/owner', {
+            const result = await fetch(`${server_URL}/owner`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data)
