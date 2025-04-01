@@ -146,12 +146,12 @@ const conn = mongoose.createConnection("mongodb+srv://dbBeMyPGAkshay:akshay1234@
 
 // CORS configuration 
 app.use(cors({
- origin: [`${client_URL}`, `${server_URL}`],
- methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
- credentials: true,
- allowedHeaders: ['Content-Type', 'Authorization', 'Cookie', 'X-Requested-With'],
- exposedHeaders: ['Set-Cookie']
-}));
+  origin: ['https://be-my-pg.vercel.app', 'https://be-my-pg-77p4.vercel.app'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization', 'Cookie', 'X-Requested-With'],
+  exposedHeaders: ['Set-Cookie']
+ }));
 
 // Pre-flight requests
 app.options('*', cors());
@@ -163,14 +163,14 @@ app.use(cookieParser());
 
 // Logging middleware
 app.use((req, res, next) => {
- console.log('Incoming request:', req.method, req.url);
- console.log('Cookies:', req.cookies);
- console.log('Origin:', req.headers.origin);
- res.on('finish', () => {
-   console.log('Response headers:', res.getHeaders());
+  console.log('Incoming request:', req.method, req.url);
+  console.log('Cookies:', req.cookies);
+  console.log('Origin:', req.headers.origin);
+  res.on('finish', () => {
+    console.log('Response headers:', res.getHeaders());
+  });
+  next();
  });
- next();
-});
 
 const port = process.env.PORT || 3000;
 const {restrictToLoggedinUserOnly} = require("./middlewares/auth");
