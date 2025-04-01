@@ -38,6 +38,7 @@ const MyBookings = () => {
                 const bookingsData = await bookingsResponse.json();
                 setBookings(bookingsData);
                 
+                console.log("bdata",bookingsData)
                 // Fetch scheduled visits using the email
                 const visitsResponse = await fetch(`${server_URL}/userScheduledVisits`, {
                     method: 'POST',
@@ -50,6 +51,7 @@ const MyBookings = () => {
 
                 const visitsData = await visitsResponse.json();
                 setScheduledVisits(visitsData);
+                console.log("Vdata",visitsData)
                 setLoading(false);
 
                 console.log("Visits:", visitsData.length);

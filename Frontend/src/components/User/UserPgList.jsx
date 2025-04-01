@@ -20,7 +20,7 @@ const PgListPage = () => {
         const matchesSearch = pg.PGname.toLowerCase().includes(searchTerm.toLowerCase()) || 
                             pg.City.toLowerCase().includes(searchTerm.toLowerCase());
         // console.log("pff",typeof(parseInt(priceFilter)), typeof(pg.PriceRange) )
-        const matchesPrice = priceFilter === 'all' || pg.PriceRange === parseInt(priceFilter);
+        const matchesPrice = priceFilter === 'all' || pg.PriceRange === priceFilter;
         
         const matchesGender = genderFilter === 'all' || pg.Gender === genderFilter;
         

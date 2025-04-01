@@ -1,90 +1,52 @@
-// src/pages/HomePage.jsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import pgimage from './../assets/images/WhatsApp4.jpeg'
+import pgimage from './../assets/images/WhatsApp4.jpeg';
 
 const HomePage = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="flex h-screen">
-        <div className="w-1/2 bg-black flex flex-col justify-center items-center p-8">
-            <h1 className="p-3 text-6xl font-bold mb-4 gradient-text-animation">BeMyPG</h1>
+        <div className="flex flex-col md:flex-row h-screen">
+            {/* Left side content - Full width on mobile */}
+            <div className="w-full md:w-1/2 bg-gradient-to-b from-black to-gray-900 flex flex-col justify-center items-center p-6 md:p-8 lg:p-12 h-screen">
+                <h1 className="p-2 md:p-3 text-5xl md:text-5xl lg:text-6xl font-extrabold mb-6 md:mb-8 gradient-text-animation tracking-tight font-inter">
+                    BeMyPG
+                </h1>
 
-            {/* <p className="text-white mb-6"> Who are you?</p> */}
+                <p className="text-white text-xl md:text-xl mb-8 md:mb-10 font-light tracking-wide">
+                    How do you describe yourself?
+                </p>
 
-            <p className="text-white mb-6"> How do you describe yourself?</p>
-
-            <div className="w-full max-w-sm">
-            {/* <a href="combine.html"> */}
-                <button 
-                type="button" 
-                className="w-full bg-blue-600 text-white p-3 rounded-full font-semibold hover:bg-blue-800 transition duration-300 mb-4"
-                onClick={() => navigate('/UserSignup')}>
-                User
-                </button>
-            {/* </a> */}
-            {/* <a href="combineowner.html"> */}
-                <button 
-                type="button" 
-                className="w-full bg-cyan-500 text-white p-3 rounded-full font-semibold hover:bg-cyan-700 transition duration-300"
-                onClick={() => navigate('/OwnerSignUp')}>
-                Owner
-                </button>
-            {/* </a> */}
+                <div className="w-full max-w-xs md:max-w-sm">
+                    <button 
+                        type="button" 
+                        className="w-full bg-blue-600 text-white p-3.5 rounded-xl font-medium hover:bg-blue-700 transition-all duration-300 mb-4 md:mb-5 text-base md:text-base shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                        onClick={() => navigate('/UserSignup')}>
+                        User
+                    </button>
+                    <button 
+                        type="button" 
+                        className="w-full bg-cyan-500 text-white p-3.5 rounded-xl font-medium hover:bg-cyan-600 transition-all duration-300 text-base md:text-base shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                        onClick={() => navigate('/OwnerSignUp')}>
+                        Owner
+                    </button>
+                </div>
+                
+                <div className="mt-10 text-gray-400 text-sm font-light">
+                    Find your perfect PG accommodation
+                </div>
             </div>
-        </div>
-        <div className="w-1/2">
-            <img 
-            src={pgimage}
-            alt="Skyscrapers viewed from below with a clear sky" 
-            className="w-full h-full object-fill" 
-            />
-        </div>
+
+            {/* Right side image - Hidden on mobile */}
+            <div className="hidden md:block md:w-1/2 h-screen">
+                <img 
+                    src={pgimage}
+                    alt="Paying Guest Accommodation" 
+                    className="w-full h-full object-cover" 
+                />
+            </div>
         </div>
     );
 };
 
 export default HomePage;
-
-// import React from 'react';
-// import { useNavigate } from 'react-router-dom';
-// const HomePage = () => {
-//     const navigate = useNavigate();
-//     return (
-//         <div className="flex h-screen">
-//         <div className="w-1/2 bg-black flex flex-col justify-center items-center p-8">
-//             <h1 className="text-5xl font-bold mb-4 text-white">BeMyPG</h1>
-            
-//             <p className="text-grey mb-6">Who the end user is?</p>
-//             <div className="w-full max-w-sm">
-//             <a href="combine.html">
-//                 <button 
-//                 type="button" 
-//                 className="w-full bg-blue text-white p-3 rounded-full font-semibold hover:bg-blue-700 transition duration-300 mb-4"
-//                 onClick={() => navigate('/UserSignup')}>
-//                 User
-//                 </button>
-//             </a>
-//             <a href="combineowner.html">
-//                 <button 
-//                 type="button" 
-//                 className="w-full bg-blue text-white p-3 rounded-full font-semibold hover:bg-blue-700 transition duration-300"
-//                 onClick={() => navigate('/OwnerSignUp')}>
-//                 Owner
-//                 </button>
-//             </a>
-//             </div>
-//         </div>
-//         <div className="w-1/2">
-//             <img 
-//             src="https://plus.unsplash.com/premium_photo-1672423154405-5fd922c11af2?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YnVpbGRpbmd8ZW58MHx8MHx8fDA%3D" 
-//             alt="Skyscrapers viewed from below with a clear sky" 
-//             className="w-full h-full object-cover" 
-//             />
-//         </div>
-//         </div>
-//     );
-// };
-
-// export default HomePage;
