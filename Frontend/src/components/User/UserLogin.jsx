@@ -36,7 +36,11 @@ function Login() {
             <div className="w-full md:w-1/2 bg-gradient-to-b from-black to-gray-900 flex flex-col justify-center items-center p-6 md:p-8 lg:p-12 h-screen">
                 <div className="w-full max-w-md">
                     <h2 className="text-3xl font-bold text-center text-white mb-8 font-sans">Welcome Back</h2>
-                    
+                    <div className="bg-indigo-900 text-white p-4 rounded-lg mb-6 text-sm">
+                        <p className="font-semibold mb-1">📝 Note: Test Credentials) </p>
+                        <p className="font-bold font-xl">Test Email: testUser@gmail.com</p>
+                        <p className="font-bold font-xl">Test Password: 1234</p>
+                    </div>
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium text-gray-200 mb-1">Email Address</label>
