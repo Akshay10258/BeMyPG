@@ -55,8 +55,5 @@ BeMyPG is a full-stack MERN (MongoDB, Express, React, Node.js) application desig
 3. Set up environment variables
 4. Run the application locally
 
-## Contact
-
-Project Link: [https://github.com/yourusername/be-my-pg](https://github.com/yourusername/be-my-pg)
 
 ---
