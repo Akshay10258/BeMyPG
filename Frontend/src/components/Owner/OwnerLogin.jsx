@@ -114,7 +114,11 @@ function Login() {
             {/* Form section - Full width on mobile */}
             <div className="w-full md:w-1/2 bg-gradient-to-b from-black to-gray-900 flex flex-col justify-center items-center p-6 md:p-8 lg:p-12 h-screen">
                 <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-8 tracking-tight font-poppins">Owner Login</h2>
-                
+                <div className="bg-indigo-900 text-white p-4 rounded-lg mb-6 text-sm">
+                        <p className="font-semibold mb-1">📝 Note: Test Credentials : </p>
+                        <p className="font-bold font-xl">Test Email: testOwner@gmail.com</p>
+                        <p className="font-bold font-xl">Test Password: 1234</p>
+                </div>
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 w-full max-w-xs md:max-w-sm">
                     {/* Email Input */}
                     <div>
