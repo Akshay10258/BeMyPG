@@ -37,7 +37,7 @@ function Login() {
                 <div className="w-full max-w-md">
                     <h2 className="text-3xl font-bold text-center text-white mb-8 font-sans">Welcome Back</h2>
                     <div className="bg-indigo-900 text-white p-4 rounded-lg mb-6 text-sm">
-                        <p className="font-semibold mb-1">📝 Note: Test Credentials) </p>
+                        <p className="font-semibold mb-1">📝 Note: Test Credentials </p>
                         <p className="font-bold font-xl">Test Email: testUser@gmail.com</p>
                         <p className="font-bold font-xl">Test Password: 1234</p>
                     </div>
