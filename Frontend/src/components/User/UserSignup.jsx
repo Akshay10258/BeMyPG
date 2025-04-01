@@ -38,8 +38,8 @@ function Signup() {
             <div className="w-full md:w-1/2 bg-gradient-to-b from-black to-gray-900 flex flex-col justify-center items-center p-6 md:p-8 lg:p-12 h-screen">
                 <div className="w-full max-w-md">
                     <h2 className="text-3xl font-bold text-center text-white mb-8 font-sans">Create Account</h2>
-                    <div className="bg-indigo-900 text-white p-4 rounded-lg mb-6 text-sm">
-                        <p className="font-semibold mb-1">📝 Note: For testing/demo purposes use this credentials for login directly(skip signup) </p>
+                    <div className="bg-indigo-900 text-white p-4 rounded-lg mb-6 text-lg">
+                        <p className="font-semibold mb-1 font-xl">📝 Note: For testing/demo purposes use this credentials for <strong>login directly(skip signup)</strong> </p>
                         <p className="font-bold font-xl">Test Email: testUser@gmail.com</p>
                         <p className="font-bold font-xl">Test Password: 1234</p>
                     </div>
