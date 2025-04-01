@@ -40,8 +40,8 @@ function Signup() {
                     <h2 className="text-3xl font-bold text-center text-white mb-8 font-sans">Create Account</h2>
                     <div className="bg-indigo-900 text-white p-4 rounded-lg mb-6 text-sm">
                         <p className="font-semibold mb-1">📝 Note: For testing/demo purposes use this credentials for login directly(skip signup) </p>
-                        <p>Test Email: testUser@gmail.com</p>
-                        <p>Test Password: 1234</p>
+                        <p className="font-bold font-xl">Test Email: testUser@gmail.com</p>
+                        <p className="font-bold font-xl">Test Password: 1234</p>
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                         <div>
