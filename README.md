@@ -35,7 +35,7 @@ BeMyPG is a full-stack MERN (MongoDB, Express, React, Node.js) application desig
 - Review and respond to visitor requests
 - Accept or reject reservation requests
 - View user reviews about their property
-- Auto marking PG in the map (pg adress -> coordinates using 3rd party api -> viewed on map)
+- Auto marking PG in the map (pg address -> coordinates using 3rd party api -> viewed on map)
 ### General Features
 - Responsive, modern UI design that works across devices
 - Real-time updates for availability and booking status
