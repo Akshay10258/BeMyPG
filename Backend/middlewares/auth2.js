@@ -10,12 +10,12 @@ async function restrictToLoggedinPgUserOnly(req,res,next){
     if(!userUid)
         // return res.json({ success: true, redirect: `${client_URL}/UserLogin` });
         return res.json(null);
-    console.log("restrict",userUid);
+    // console.log("restrict",userUid);
     const user=getuser(userUid);
 
 
     if(!user) 
-        return res.json({ success: true, redirect: `${client_URL}/UserLogin` });
+        return res.json({ success: false, redirect: `${client_URL}/UserLogin` });
     req.user=user;
     console.log(req.user._id);
     console.log("got the id ")
@@ -24,7 +24,6 @@ async function restrictToLoggedinPgUserOnly(req,res,next){
 }
 
 module.exports={
-    // restrictToLoggedinUserOnly,
     restrictToLoggedinPgUserOnly,
 }
 
