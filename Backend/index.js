@@ -142,7 +142,7 @@ const server_URL = process.env.server_URL;
 const app = express();
 
 // Create MongoDB connection
-const conn = mongoose.createConnection("mongodb+srv://dbBeMyPGAkshay:akshay1234@cluster0.mjpm5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
+const conn = mongoose.createConnection("mongodb+srv://akshayachar1913:akshay@1234@bemypg.krskt.mongodb.net/?retryWrites=true&w=majority&appName=BeMyPG");
 
 // CORS configuration 
 app.use(cors({
