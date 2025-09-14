@@ -177,7 +177,7 @@ const {restrictToLoggedinUserOnly} = require("./middlewares/auth");
 const {restrictToLoggedinPgUserOnly} = require("./middlewares/auth2");
 
 // Connect to MongoDB
-connectomongodb("mongodb+srv://dbBeMyPGAkshay:akshay1234@cluster0.mjpm5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+connectomongodb("mongodb+srv://akshayachar1913:akshay@1234@bemypg.krskt.mongodb.net/?retryWrites=true&w=majority&appName=BeMyPG")
  .then(() => console.log("Mongodb connected"))
  .catch(err => {
    console.error("MongoDB connection failed: ", err);
